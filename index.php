@@ -1,18 +1,19 @@
 <?php
-
+//session_start();
 function redirect($url, $statusCode = 303)
 {
    header('Location: ' . $url, true, $statusCode);
    die();
 }
 
-if($_SESSION['username'] !== NULL)
+//if(isset($_SESSION['username']))
+if(session_status() !== PHP_SESSION_NONE)
     redirect('hangman/hangmanGame.html');
 ?>
 <html>
 <head></head>
 <body>
-<a href="/login/login.php">Login</a>
-<a href="/signup/signup.php">Sign Up</a>
+<a href="login/">Login</a>
+<a href="signup/">Sign Up</a>
 </body>
 </html>
