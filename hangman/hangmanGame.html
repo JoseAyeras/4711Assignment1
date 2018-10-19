@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="hwstyle.css">
+    </head>
+    <body>
+        <h1 id = "status" class = "status">HANGMAN</h1>
+        <!--<div class="score">
+            <div class="correct info"><span id="right"></span> Right Guesses</div>
+            <div class="lives info"><span id = "tries"></span> Lives</div>
+            <div class="wrong info"><span id="wrong"></span> Wrong Guesses</div>
+        </div><br/>-->
+
+        <p>Wrong guesses left: <span id = "tries"></span></p>
+        <p>Wrong guesses so far: <span id="right"></span><br/>
+            Right guesses so far: <span id="wrong"></span></p>
+
+        <div id = "known"></div>
+        <div id = "letters">
+            <button id="a" onclick = "check_letter('a')" class = "guess">a</button>
+            <button id="b" onclick = "check_letter('b')" class = "guess">b</button>
+            <button id="c" onclick = "check_letter('c')" class = "guess">c</button>
+            <button id="d" onclick = "check_letter('d')" class = "guess">d</button>
+            <button id="e" onclick = "check_letter('e')" class = "guess">e</button>
+            <button id="f" onclick = "check_letter('f')" class = "guess">f</button>
+            <button id="g" onclick = "check_letter('g')" class = "guess">g</button>
+            <br/>
+            <button id="h" onclick = "check_letter('h')" class = "guess">h</button>
+            <button id="i" onclick = "check_letter('i')" class = "guess">i</button>
+            <button id="j" onclick = "check_letter('j')" class = "guess">j</button>
+            <button id="k" onclick = "check_letter('k')" class = "guess">k</button>
+            <button id="l" onclick = "check_letter('l')" class = "guess">l</button>
+            <button id="m" onclick = "check_letter('m')" class = "guess">m</button>
+            <button id="n" onclick = "check_letter('n')" class = "guess">n</button>
+            <br/>
+            <button id="o" onclick = "check_letter('o')" class = "guess">o</button>
+            <button id="p" onclick = "check_letter('p')" class = "guess">p</button>
+            <button id="q" onclick = "check_letter('q')" class = "guess">q</button>
+            <button id="r" onclick = "check_letter('r')" class = "guess">r</button>
+            <button id="s" onclick = "check_letter('s')" class = "guess">s</button>
+            <button id="t" onclick = "check_letter('t')" class = "guess">t</button>
+            <button id="u" onclick = "check_letter('u')" class = "guess">u</button>
+            <br/>
+            <button id="v" onclick = "check_letter('v')" class = "guess">v</button>
+            <button id="w" onclick = "check_letter('w')" class = "guess">w</button>
+            <button id="x" onclick = "check_letter('x')" class = "guess">x</button>
+            <button id="y" onclick = "check_letter('y')" class = "guess">y</button>
+            <button id="z" onclick = "check_letter('z')" class = "guess">z</button>
+        <button class="reset" id="reset" onclick="loadHangman()">RESET</button>
+        </div>
+        <script src = "hwmodel.js"></script>
+        <script src = "hwcontroller.js"></script>
+    </body>
+</html>

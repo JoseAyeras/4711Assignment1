@@ -1,0 +1,44 @@
+
+            .reset {
+                display: inline-block;
+                width: 10%;
+                height: 5%;
+                background-color: #FA0;
+                text-align: center;
+            }
+            .guess {
+                display: inline-block;
+                width: 5%;
+                height: 5%;
+                background-color: #0AF;
+                text-align: center;
+            }
+            .correct {
+                background-color: #0FF;
+            }
+            .wrong {
+                background-color: #A00;
+            }
+            .lives {
+                background-color: #AA0;
+            }
+            .trial {
+                display: inline-block;
+                width: 2%;
+                height: 5%;
+                vertical-align: middle;
+                background-color: #050;
+                color: #FFF;
+                text-align: center;
+            }
+            .score {
+                width: 40%;
+                height: 2.5%;
+                text-align: center;
+                display: inline-block;
+            }
+            .info {
+                display: inline-block;
+                width: 10%;
+                height: 2%;
+            }
