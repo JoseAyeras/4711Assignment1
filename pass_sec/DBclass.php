@@ -1,5 +1,5 @@
 <?php
-include 'disinject.php';
+include 'pass_sec.php';
 class DB
 {
     /*
@@ -11,7 +11,7 @@ class DB
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
-    private $dbname = "2910test";
+    private $dbname = "4711_AS1";
     private $conn;
 
     // Connect to DB
@@ -49,16 +49,16 @@ class DB
     // Att: make sure table students is already created
     public function InsertAccess($username, $firstname, $lastname, $pass, $email){
         $sql =" INSERT INTO Access(username, firstname, lastname, pass, email)
-            VALUES (\"" . disinject($username) . "\", \"" . disinject($firstname) .
-                "\", \"" . disinject($lastname) . "\", \"" . disinject($pass) . "\", \"" .
-                disinject($email) . "\")";
+            VALUES (\"" . hex_en($username) . "\", \"" . hex_en($firstname) .
+                "\", \"" . hex_en($lastname) . "\", \"" . hex_en($pass) . "\", \"" .
+                hex_en($email) . "\")";
             inquiry($sql);
     }
 
     private function Insert($table, $data) {
         $sql = "INSERT INTO $table VALUES(";
         while(current($data)!==FALSE) {
-          $sql.="\"".disinject(current($data))."\"";
+          $sql.="\"".hex_en(current($data))."\"";
           if(next($data)!==FALSE)
             $sql.=", ";
         }

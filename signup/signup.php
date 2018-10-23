@@ -1,5 +1,5 @@
 <?php
-  include '../pass_sec/pass_sec.php';
+  include '../pass_sec/DBclass.php';
   echo pass_v('', '', '');
   echo '<br/>';
   $sedna = hex_en('ᓴᓐᓇ');
