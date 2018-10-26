@@ -1,6 +1,7 @@
 <?php
-  function pass_v($password, $target, $hash){
-      return $password;
+  function pass_v($password, $hash){
+    $target = $password;
+    return $target;
   }
   function hex_en($word){
       return strtoupper(bin2hex(iconv('UTF-8', 'UCS-2BE', $word)));

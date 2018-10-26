@@ -14,7 +14,7 @@ class DB
     private $dbname = "4711_AS1";
     private $conn;
 
-    // Connect to DB
+    // Fundamentals
     public function connect()
     {
         $this->conn = new mysqli(
@@ -45,15 +45,39 @@ class DB
         }
         $result->close();
     }
-    // Insert to DB
-    // Att: make sure table students is already created
+    
+    //Application-specific tools
     public function InsertAccess($username, $firstname, $lastname, $pass, $email){
-        $sql =" INSERT INTO Access(username, firstname, lastname, pass, email)
+        $sql ="INSERT INTO Access(username, firstname, lastname, pass, email)
             VALUES (\"" . hex_en($username) . "\", \"" . hex_en($firstname) .
-                "\", \"" . hex_en($lastname) . "\", \"" . hex_en($pass) . "\", \"" .
+                "\", \"" . hex_en($lastname) . "\", \"" . hex_en(pass_sec($pass, 0)) . "\", \"" .
                 hex_en($email) . "\")";
             inquiry($sql);
     }
+    public function LoginCheck($username, $pass){
+        $sql = "SELECT pass FROM Access WHERE username LIKE \"$username\"";
+        $data_array = $this->retrieve($sql);
+        if(
+                sizeof($data_array)
+                    !==1
+                || $data_array[0]['pass']
+                    !== hex_en( pass_sec($pass) )
+        )
+            return false;
+        else
+            return true;
+    }
+    public function AddScore($username, $score){
+        $sql = "INSERT INTO Scores(username, score) VALUES (\""
+                . hex_en($username)
+                . "\", \"" . $score
+                . "\")";
+        inquiry($sql);
+    }
+
+    ////
+    //// Working stuff ends here
+    ////
 
     private function Insert($table, $data) {
         $sql = "INSERT INTO $table VALUES(";
@@ -68,35 +92,6 @@ class DB
 
     private function Select($targets, $from, $where = "1"){
 //idk
-    }
-
-    public function LoginCheck($username, $pass){
-        $sql = "SELECT pass FROM Access WHERE username LIKE \"$username\"";
-        $data_array = $this->retrieve($sql);
-        if(sizeof($data_array)!==1 || $data_array[0]['pass']!==$pass)
-            return false;
-        else
-            return true;
-    }
-    
-    // Read from DB
-    public function ListFoods()
-    {
-        $sql = "SELECT * FROM Recipe";
-        $result = $this->conn->query($sql);
-        
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                echo "First name: " . $row["firstname"]."<br>";
-            }
-        } else {
-            echo "0 results";
-        }
-    }
-    public function diConnect()
-    {
-        $this->conn->close();
     }
 }
 /*
