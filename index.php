@@ -7,7 +7,7 @@ function redirect($url, $statusCode = 303)
 }
 
 //if(isset($_SESSION['username']))
-if(session_status() !== PHP_SESSION_NONE)
+    if(session_status() !== PHP_SESSION_NONE)
     redirect('hangman/hangmanGame.html');
 ?>
 <html>
