@@ -50,7 +50,10 @@ class DB
     public function InsertAccess($username, $firstname, $lastname, $pass, $email){
         $sql ="INSERT INTO Access(username, firstname, lastname, pass, email)
             VALUES (\"" . hex_en($username) . "\", \"" . hex_en($firstname) .
-                "\", \"" . hex_en($lastname) . "\", \"" . hex_en(pass_sec($pass, 0)) . "\", \"" .
+                "\", \"" . hex_en($lastname) . "\", \"" . //hex_en(
+                    pass_sec($pass, 0)
+                    //) not needed for now because md5 always returns hexadecimal and also sucks
+                    . "\", \"" .
                 hex_en($email) . "\")";
             inquiry($sql);
     }

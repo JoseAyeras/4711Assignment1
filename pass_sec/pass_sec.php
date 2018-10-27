@@ -1,6 +1,6 @@
 <?php
   function pass_v($password, $hash){
-    $target = mmd5($password);
+    $target = md5($password);
     return $target;
   }
   function hex_en($word){
