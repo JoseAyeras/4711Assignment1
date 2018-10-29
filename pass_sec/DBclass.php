@@ -34,19 +34,19 @@ class DB
         return $result;
     }
     private function retrieve($sql){
-        $result = inquiry($sql);
         if($result = $this->conn->query($sql)){
-            //$data_array = new Array();
+            $data_array = new Array();
+            //$tmp = new Array();
             while($row = $result->fetch_assoc())
-                $data_array[] = $row;
+                array_push($data_array, $row);
             $result->close();
             return $data_array;
         }
         $result->close();
+        return false;
     }
-    
     //Application-specific tools
-    public function InsertAccess($username, $pass, $email){
+    public function NewUser($username, $pass, $email){
         $sql ="INSERT INTO Users(username, pass, email)
             VALUES (\"" . hex_en($username) . "\", \"" .
                     //hex_en($firstname) . "\", \"" . hex_en($lastname) . "\", \"" .
@@ -78,7 +78,10 @@ class DB
                 . "\")";
         inquiry($sql);
     }
-
+    public function HighScores(){
+        $sql = "SELECT * FROM Scores WHERE game_id = 0";
+        return $this->retrieve($sql);
+    }
     ////
     //// Working stuff ends here
     ////
