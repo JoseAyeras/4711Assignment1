@@ -8,9 +8,9 @@ class DB
     private $password = "";
     private $dbname = "user_info";
     */
-    private $servername = "localhost";
-    private $username = "root";
-    private $password = "";
+    private $servername = "crypticc_game_profiles";
+    private $username = "crypticc_games";
+    private $password = "]w^O&w}Ag}U*N*!W";
     private $dbname = "4711_AS1";
     private $conn;
 
@@ -31,11 +31,10 @@ class DB
     private function inquiry($sql){
         $statement = $this->conn->prepare($sql);
         $result = $statement->execute();
-        if ($result == true){
-            echo "Record added!w </br>";
-        }
+        return $result;
     }
     private function retrieve($sql){
+        $result = inquiry($sql);
         if($result = $this->conn->query($sql)){
             //$data_array = new Array();
             while($row = $result->fetch_assoc())
@@ -47,10 +46,11 @@ class DB
     }
     
     //Application-specific tools
-    public function InsertAccess($username, $firstname, $lastname, $pass, $email){
-        $sql ="INSERT INTO Access(username, firstname, lastname, pass, email)
-            VALUES (\"" . hex_en($username) . "\", \"" . hex_en($firstname) .
-                "\", \"" . hex_en($lastname) . "\", \"" . //hex_en(
+    public function InsertAccess($username, $pass, $email){
+        $sql ="INSERT INTO Users(username, pass, email)
+            VALUES (\"" . hex_en($username) . "\", \"" .
+                    //hex_en($firstname) . "\", \"" . hex_en($lastname) . "\", \"" .
+                    //hex_en(
                     pass_sec($pass, 0)
                     //) not needed for now because md5 always returns hexadecimal and also sucks
                     . "\", \"" .
@@ -58,7 +58,8 @@ class DB
             inquiry($sql);
     }
     public function LoginCheck($username, $pass){
-        $sql = "SELECT pass FROM Access WHERE username LIKE \"$username\"";
+        $sql = "SELECT pass FROM Users WHERE username LIKE \"$username\"";
+
         $data_array = $this->retrieve($sql);
         if(
                 sizeof($data_array)

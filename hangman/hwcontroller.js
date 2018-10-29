@@ -26,3 +26,11 @@
         }
         sc = new score();
         loadHangman();
+class HangmanController{
+    constructor(){
+        
+    }
+    chLetter(ch){
+        return this.model.chLetter(ch);
+    }
+}
